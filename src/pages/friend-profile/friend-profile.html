@@ -1,0 +1,76 @@
+<ion-header class="friend-profile-header">
+<!--   <ion-backdrop *ngIf="isRequestStarted" disable-activated="" role="presentation" tappable="" style="opacity: 0;  background: #fff;"></ion-backdrop> -->
+   <ion-navbar>
+      <ion-title style="display: inline-flex;">
+         <h5 class="friend-profile-cation">Friend Profile</h5>
+      </ion-title>
+   </ion-navbar>
+</ion-header>
+
+<ion-content class="profile birdies-me">
+<!--   <ion-backdrop *ngIf="isRequestStarted" disable-activated="" role="presentation" tappable="" style="opacity: 0; background: #fff;"></ion-backdrop>
+   <mb-loader *ngIf="isRequestStarted"></mb-loader> -->
+   <div class="profile-bg">
+   </div>
+   <div style="background-color: inherit;margin-top: -76px;text-align: center;">
+      <img [src]="imageSrc" class="profile-img">
+
+   </div>
+   <h5 class="username">{{user.username}}</h5>
+   <div style="text-align: center;">{{user.membership}}</div>
+   <div *ngIf="(gameList$ | async)?.length <= 0" class="errorbox">
+        <p>No Games Available.</p>
+   </div>
+   <!--
+   <div class="birdie-stat" *ngIf="!isEmptyGame && friendGamesList.length > 0" style="margin-top:25px;">
+      <ion-row>
+         <ion-col col-6>
+            <ion-card class="birdie-stat-card">
+               <div class="birder-stat-div">
+                  <h1 class="birdie-stat-num">{{birdieStat.avg_score_18}}</h1>
+                  <img src="assets/img/down_green.png" class="birdie-stat-icon"/>
+               </div>
+               <p>Average Scores 18</p>
+            </ion-card>
+         </ion-col>
+         <ion-col col-6>
+            <ion-card class="birdie-stat-card">
+               <div class="birder-stat-div">
+                  <h1 class="birdie-stat-num">{{birdieStat.avg_birdie_18}}</h1>
+                  <img src="assets/img/down_red.png" class="birdie-stat-icon"/>
+               </div>
+               <p>Average Birdie 18</p>
+            </ion-card>
+         </ion-col>
+      </ion-row>
+   </div> -->
+
+   <ion-scroll scrollX="true" scrollY="true" style="height: 265px;">
+      <ion-row *ngFor="let game of gameList$ | async" class="bordies-list-row" (click)="toggleBirdieDetail(game)">
+      <ion-col col-9 class="birdie-col1 padding-top13">
+         <div class="birdie-name">{{game.golfname}}</div>
+         <img src="assets/img/Calendar.png" class="calender-icon"/><span class="birdie-date">{{game.date}}</span>
+         <div *ngIf="game.isCollapse" class="birdie-description">
+            <table style="width:100%">
+               <tr>
+                  <th>Hole</th>
+                  <th>Shot</th>
+                  <th>Distance</th>
+               </tr>
+               <tr *ngFor="let birdies of getKeys(game.birdies_hole)">
+                  <td>{{game.birdies_hole[birdies].hole}}</td>
+                  <td>{{game.birdies_hole[birdies].shot}}</td>
+                  <td>{{game.birdies_hole[birdies].distance}}</td>
+              </tr>
+            </table>
+         </div>
+      </ion-col>
+      <ion-col class="birdie-col2">
+         <div style="display: inline-flex;">
+            <img *ngIf="game.birdies > 0" src="assets/imgs/logo_small.png" class="birdie-icon"/>
+            <h1 class="birdie-count">{{game.score}}</h1>
+         </div>
+      </ion-col>
+      </ion-row>
+   </ion-scroll>
+</ion-content>

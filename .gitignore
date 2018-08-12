@@ -33,3 +33,13 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+
+#### Warning ####
+## config.xml , package.json, package-lock.json contain password ##
+## they are commited with development values. Never commit production ones
+#################
+
+.editorconfig
+src/app/firebase.credentials.ts
+ionic-cheatsheet.txt

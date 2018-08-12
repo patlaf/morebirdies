@@ -1,0 +1,116 @@
+page-user-profile-full {
+
+  	.profile-cation{
+  		margin-left: 10px;
+      	font-weight: bold;
+      	font-size: 1.7rem;
+      	margin-top: 12px;
+  	}
+  	.profile-backbtn{
+  		background: none !important;
+      	box-shadow: none !important;
+      	color: #000 !important;
+      	margin-top: -9px;
+  	}
+
+  }
+
+
+
+  .platform-ios   .backbtn {
+      background: none !important;
+      box-shadow: none !important;
+      color: #000 !important;
+      marging-top: -10px;
+
+    }
+
+.platform-android   .backbtn {
+    background: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    float: left;
+  }
+
+  .profile{
+
+  	.profile-camera-icon{
+  		top: -20px;
+  	    -webkit-box-shadow: none;
+  	    box-shadow: none;
+  	    right: 35px;
+  	    width: 29px;
+  	    padding: 0px;
+  	    height: 28px;
+  	}
+  	.profile-bg{
+  		height: 30%;
+  	  background: #5483ed;
+  	}
+  	.profile-img{
+  		background: #e0e0e0;
+      	width: 130px;
+      	height: 130px;
+      	border-radius: 50%;
+      	border: 10px solid #CCC;
+  	}
+  	.container{
+  	    left: 50%;
+  	    transform: translate(-50%, -50%);
+  	    -webkit-transform: translate(-50%, -50%);
+  	    text-align: center;
+  	    position: absolute;
+  	}
+
+  	.container2{
+  	    margin: 15px;
+  	}
+  	.username{
+  		margin-top: 0px;
+  		font-size: 1.6rem;
+  		color: #5483ed;
+  		text-align:center;
+  	}
+
+  	ion-avatar img {
+  	    border-radius: 50%;
+  	    overflow: hidden;
+  	    width: 100%;
+  	    height: 100%;
+  	    border: 10px solid #CCC;
+   	}
+   	.item-md.item-block .item-inner{
+   		border-bottom: 0px solid #dedede !important;
+   	}
+
+   	.profile-textfield{
+      	border: none;
+  	    width: 100%;
+  	    border-bottom: 0.55px solid #CCC;
+  	    font-size: 14px;
+  	    font-weight: bold;
+  	}
+  	.profile-label{
+  		font-size: 1.2rem;
+  		font-weight: bold;
+  		color:#CCC;
+  	}
+  	.profile-text{
+  		font-size: 1.2rem;
+  		font-weight: bold;
+  	}
+  	.profile-col{
+  		padding: 3px;
+  		max-width:85%;
+  	}
+
+  	.errorSpan{
+  		color: red;
+  	    position: absolute;
+  	    top: 150%;
+  	    width: 100%;
+  	    left: 50%;
+  	    transform: translate(-50%, -50%);
+  	    -webkit-transform: translate(-50%, -50%);
+  	}
+}

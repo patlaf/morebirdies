@@ -1,0 +1,44 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+        <div style="display: inline-flex; text-align: left">
+            <img src="assets/imgs/logo_small.png" class="logosmall"/>
+            <h5 class="title">Login</h5>
+        </div>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="game">
+
+    <ion-card>
+        <ion-label>Email</ion-label>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-label>Password</ion-label>
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+
+
+        <div style="text-align: center;">
+            <button [disabled]="isAuthenticationStarted" ion-button color="primary" (click)="login(user)" style="width: 100px;">Login
+                <ion-spinner name="bubbles" class="button-loader" *ngIf="isAuthenticationStarted" style="top: 7px;"></ion-spinner>
+            </button>
+            <button [disabled]="isAuthenticationStarted" ion-button color="primary" (click)="register(user)" style="width: 100px;">Register
+            </button>
+        </div>
+
+    </ion-card>
+</ion-content>

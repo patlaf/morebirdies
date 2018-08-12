@@ -1,0 +1,82 @@
+
+To do
+
+=== Core ===
+- error: permission_denied at /games/ZKNprYxO72WYI5MMn0hzjde2wAQ2: Client doesn't have permission to access the desired data.
+    -- probablement du a un probleme de session ou j'étais mal authentifié
+- mettre des try catch partout où il y a des calls
+    -- lorsqu'on accede a un attribut d'un objet, si l'Attribut n'existe pas ca fait un runtime error
+- Google best practices sur angulardb (set timeout, once(), then() catch())
+- FIREBASE WARNING: Using an unspecified index. Your data will be downloaded and filtered on the client. Consider adding ".indexOn": "isAccepted" at /friends/lToX6MDqaNMM2SVjiAAHU5Q3MCO2 to your security rules for better performance.
+- Native: tried calling StatusBar.styleDefault, but Cordova is not available. Make sure to include cordova.js or run in a device/simulator
+- Native: tried calling SplashScreen.hide, but Cordova is not available. Make sure to include cordova.js or run in a device/simulator
+- validation des champs dans update full profile
+- upgrade the angularfire2, angular, firebase, rxjs
+- setup github
+
+=== Features ===
+- Forget my password (firebase has a feature for it)
+- modifier ton email dans user-profile-full (faut que ca update l'authentification aussi)
+- profile ajout photo
+- publish facebook
+- module de Stats
+
+
+=== Layout ===
+- Dans la page login, le logo small a un background blanc alors que le background est gris
+- nouveau layout
+- icon and splashscreen
+- La persistance du login fait blinker la page de login si deja authentifié
+- afficher un beau message quand on a pas encore d'ami - ajouter un bouton pour en ajouter direct
+- checker c'est quoi <ion-backdrop> et <mb-loader>. c'est 2 tag utilisé par Shreesha
+- delete friend show confirmation in a toaster banner avec un undo
+- delete gameshow confirmation in a toaster banner avec un undo
+- search friend, le premier search fait blinker le no result a cause displayedUserList est pas encore initialisé
+- layout the profile full est laid a chier
+- motivation quote instead of "Do more birdies"
+- le input de handicap devrait être une roulette de 0 à 41
+- le side panel comme celui de twitter,avec le thumbnail picture en haut
+- Quand on efface le username, je set le email dans le username mais on le voit blinker avant que la form submit..
+- dans la distance de birdies, changer l'échelle dependement du type de shot
+- dans le home et ajout de game, indiquer c'est quoi l'unité de distance
+
+
+
+in progress
+- Error handling dans ajout de games
+
+
+
+Question Max/PL
+  - Quel est notre public cible ?
+
+
+
+Bug pas capable de reproduire:
+-- La page friend profile fonctionnne soso, un moment donné on obtient user == underfined randomly.
+    -- essayer de changer this.afdb.object(`users/${this.friendID}`).snapshotChanges().subscribe(u2 => { this.user = u2.payload.val();})
+      pour un map() pour voir si ca change de quoi. j'ai l'impression qu'il pert sa référence du friend_id et load un user vide.
+
+-- apres la registration, si je vais dans mon profile les champs ne sont pas populé meme si tout est dispo en DB
+
+
+Done
+- logo morebirdies dans le header sur ionic coupe à la fin
+- add Friends -- 7 Juin
+- cancel friend request -- 7 Juin
+- list friend request -- 7 juin
+- decline friend request - 26 Juin
+- accept friend request - 27 Juin
+- Fixed accept Friend Request not working properly - 9 juillet (2.5h)
+- Quand on accepte une request, le delete de friends delete tous les friends plutot que juste le friend qui vient d'accepter --- tester le equalto() -- 9 juillet (1h)
+- list Friends - 5 juillet (1h)
+- delete friends - 10 juillet (15 minutes)
+- see friend profile  -- 10 juillet, 1.5h
+- facebook login -- 22 juillet 3h
+  -- reste a enregister les info dans la DB
+  -- redirecter sur homepage
+- Affichage des messages d'erreur lors de l'enregistrement dans un toast banner
+- lors du registration, le date of birth par defaut est la date d'aujourd'hui
+- lorsqu que le update de registration est skippé, sauvegarder les info comme si c'était un update
+- store le email dans la table user lors de l'authentification
+- create profile dans user profile light et full ne valide pas les champs minimum

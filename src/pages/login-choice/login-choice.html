@@ -1,0 +1,19 @@
+<!--
+  Generated template for the LoginChoicePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+</ion-header>
+
+
+<ion-content class="sociallogin">
+	<div class="logocontainer"><img src="assets/imgs/logo_long.png"/></div>
+	<div class="sociallogin-container">
+		<button ion-button full class="facebook-button" (click)="fbLogin()"><img src="assets/imgs/facebook.png" class="social-login-icon"/>Signin with Facebook</button>
+		<!--<button ion-button full class="google-button"><img src="assets/img/google.png" class="social-login-icon"/> Continue with Google</button>
+		<button ion-button full class="twitter-button"><img src="assets/img/twitter.png" class="social-login-icon"/> Continue with Twitter</button> -->
+		<button ion-button full class="email-button" navPush="LoginPage"><img src="assets/imgs/Signup.png" class="social-login-icon"/>Signin with your email</button>
+	</div>
+</ion-content>

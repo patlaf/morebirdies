@@ -1,0 +1,94 @@
+<!--
+  Generated template for the UserProfileLightPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="game-header">
+   <ion-toolbar>
+      <button ion-button icon-only class="backbtn" (click)="gotoHome()">
+         <ion-icon name="arrow-back" ></ion-icon>
+      </button>
+      <ion-title style="display: inline-flex; ">
+         <img src="assets/imgs/logo_long.png" class="long-logo"/>
+      </ion-title>
+   </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content class="profile">
+<!-- {{(user | async | json)}}
+{{(user | async)?.username}} -->
+
+
+
+  <div class="profile-bg"></div>
+  <div class="container2">
+      <div style="background-color: inherit;margin-top: -100px;text-align: center;">
+         <img [src]="imageSrc" class="profile-img">
+         <button *ngIf="isEdit" ion-button icon-only tappable class="profile-camera-icon" (click)="openActionSheet()">
+         <ion-icon ios="ios-camera" md="md-camera" style="font-size: 1.5em;"></ion-icon>
+         </button>
+      </div>
+
+    <ion-row>
+        <ion-col class="game-col">
+           <h5 class="game-text">Username</h5>
+           <ion-item class="nopadding">
+              <ion-input type="text" class="game-textfield"  [(ngModel)]="user.username"></ion-input>
+           </ion-item>
+        </ion-col>
+     </ion-row>
+
+     <ion-row>
+        <ion-col class="game-col">
+           <h5 class="game-text">Birth date</h5>
+           <ion-item class="date-field" style="padding-left: 0px;">
+              <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="user.birthdate" placeholder="Date of birth" style="padding: 0px;"></ion-datetime>
+           </ion-item>
+           <div class="divider"> </div>
+        </ion-col>
+
+        <ion-col class="game-col">
+           <h5 class="game-text">Gender</h5>
+           <ion-list radio-group [(ngModel)]="user.gender">
+           <ion-item>
+              <ion-label>Male</ion-label>
+              <ion-radio value="male" checked></ion-radio>
+           </ion-item>
+           <ion-item>
+              <ion-label>Female</ion-label>
+              <ion-radio value="female"></ion-radio>
+           </ion-item>
+           </ion-list>
+        </ion-col>
+     </ion-row>
+
+
+     <ion-row style="margin-top: 12px;">
+        <ion-col class="game-col game-col-margin-padding">
+           <h5 class="game-text">Handicap</h5>
+           <ion-item class="nopadding">
+              <ion-input type="number" class="game-textfield"  [(ngModel)]="user.handicap" max="41" min="0"></ion-input>
+           </ion-item>
+           <div class="divider"> </div>
+        </ion-col>
+        <ion-col class="game-col game-col-margin-padding">
+           <h5 class="game-text">Membership</h5>
+           <ion-item class="nopadding">
+              <ion-input type="text" class="game-textfield"  [(ngModel)]="user.membership"></ion-input>
+           </ion-item>
+        </ion-col>
+     </ion-row>
+
+     <div style="text-align: center;">
+        <button  [disabled]="isAuthenticationStarted" ion-button color="primary" (click)="updateProfile()" style="width: 105px;">Update
+        <ion-spinner name="bubbles" class="button-loader" *ngIf="isAuthenticationStarted" style="top: 7px;"></ion-spinner>
+        </button>
+     </div>
+   </div>
+
+
+</ion-content>

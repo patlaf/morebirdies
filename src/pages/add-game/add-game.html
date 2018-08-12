@@ -1,0 +1,102 @@
+<ion-header class="game-header">
+   <ion-toolbar>
+      <button ion-button icon-only class="game-backbtn" (click)="gotoHome()">
+         <ion-icon name="arrow-back" ></ion-icon>
+      </button>
+      <ion-title style="display: inline-flex;">
+         <h5 class="friend-caption">Add Game</h5>
+      </ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="game">
+   <ion-row>
+      <ion-col col-12 class="game-col">
+         <ion-label  class="game-text">Golf Course</ion-label>
+         <ion-item class="nopadding">
+            <ion-input type="text" class="game-textfield"  [(ngModel)]="course"></ion-input>
+         </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+   </ion-row>
+   <ion-row>
+      <ion-col col-12 class="game-col game-col-margin-padding">
+         <h5 class="game-text">Score</h5>
+         <ion-item class="nopadding">
+            <ion-input type="number" class="game-textfield"  [(ngModel)]="score"></ion-input>
+         </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+   </ion-row>
+
+   <ion-row>
+      <ion-col col-12 class="game-col game-col-margin-padding">
+         <h5 class="game-text">Holes</h5>
+         <ion-row style="margin-top: 15px;">
+            <ion-col col-6  [ngClass]="{'game-hole-selected': isHole18,'game-hole-nonselected':!isHole18}" class="game-text" (click)="getHoles('18')">
+            <u *ngIf="isHole18">18</u>
+            <span *ngIf="!isHole18">18</span>
+      </ion-col>
+      <ion-col col-6 [ngClass]="{'game-hole-selected': !isHole18,'game-hole-nonselected':isHole18}" class="game-text" (click)="getHoles('9')">
+      <u *ngIf="!isHole18">9</u>
+      <span *ngIf="isHole18">9</span>
+      </ion-col>
+      </ion-row>
+      </ion-col>
+      <ion-col></ion-col>
+   </ion-row>
+
+   <ion-row>
+      <ion-col col-12 class="game-col game-col-margin-padding">
+         <h5 class="game-text">Number of Birdies</h5>
+         <ion-row style="margin-top: 15px;">
+            <ion-col col-auto class="birdie-countdiv game-text" (click)="updateBirdieNumber('-')">
+               <ion-icon name="md-remove" class="game-icon"></ion-icon>
+            </ion-col>
+            <ion-col col-3 class="birdie-count-col game-text">{{birdieQty}}</ion-col>
+            <ion-col col-auto class="birdie-countdiv game-text"  (click)="updateBirdieNumber('+')">
+               <ion-icon name="md-add" class="game-icon"></ion-icon>
+            </ion-col>
+         </ion-row>
+      </ion-col>
+      <ion-col></ion-col>
+   </ion-row>
+
+   <ion-scroll scrollY="true" style="height: 265px;" *ngIf="birdieQty > 0">
+      <div class="birdie-list-row" *ngFor="let item of birdieHoleList; let mainindex = index">
+         <ion-row>
+            <ion-col col-3>
+               <div class="birdie-hole-text">Hole</div>
+            </ion-col>
+            <ion-col col-9 style="padding-left: 20px;padding-left: 20px;
+               line-height: 30px">
+               <span *ngFor="let num of item.holeList;let ndx = index" [ngClass]="{'birdie-hole-selected': num.isHighlighted,'birdie-hole-nonselected':!num.isHighlighted}" class="birdie-hole-number" (click)="updateBirdie(num,'holeList',ndx,mainindex)">
+               {{num.Value}}
+               </span>
+            </ion-col>
+         </ion-row>
+         <ion-row>
+            <ion-col>
+               <button *ngFor="let but of item.birdieType;let ndx = index" ion-button [ngClass]="{'birdie-highlighted': but.isHighlighted,'birdie-nonhighlighted':!but.isHighlighted}" class="birdie-button" (click)="updateBirdie(but,'birdieType',ndx,mainindex)">{{but.Value}}
+               </button>
+            </ion-col>
+         </ion-row>
+         <ion-list>
+            <p class="caption">Distance</p>
+            <ion-item class="game-ranger">
+               <ion-range min="1" max="350" pin="true" [(ngModel)]="item.distance" (ngModelChange)="updateDistance(item.distance,mainindex)">
+               <ion-label range-left style="font-weight: bold;">1</ion-label>
+               <ion-label range-right style="font-weight: bold;">350</ion-label>
+               </ion-range>
+            </ion-item>
+         </ion-list>
+      </div>
+   </ion-scroll>
+</ion-content>
+<ion-footer style="background: #f4f4f4;">
+   <div style="text-align: center;">
+      <button  [disabled]="isAuthenticationStarted" ion-button class="button-save" (click)="saveGame()"  style="width: 105px;">Save
+      <ion-spinner name="bubbles" class="button-loader" *ngIf="isAuthenticationStarted" style="top: 7px;"></ion-spinner>
+      </button>
+   </div>
+</ion-footer>

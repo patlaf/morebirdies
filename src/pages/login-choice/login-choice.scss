@@ -1,0 +1,64 @@
+.sociallogin{
+	background-image: url("../assets/imgs/signup_background.png");
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .logocontainer{
+		text-align: center;
+		margin-top: 75px;
+    }
+
+    .sociallogin-container{
+	    margin: 0 auto;
+	    position: absolute;
+	    top: 60%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    -webkit-transform: translate(-50%, -50%);
+	    text-align: center;
+	    width: 90% !important;
+	    padding: 10px;
+	    max-width: 500px;
+	}
+	.facebook-button{
+		height: 5rem;
+    	background-color: #3B5998;
+    	text-transform: inherit;
+    	font-size: 15px;
+    	border-radius: 8px;
+   		margin-bottom: 10px;
+	}
+	.google-button{
+		height: 5rem;
+    	background-color: #e05e4e;
+    	text-transform: inherit;
+    	font-size: 15px;
+    	border-radius: 8px;
+    	margin-bottom: 10px;
+	}
+	.twitter-button{
+		height: 5rem;
+    	background-color: #55acee;
+    	text-transform: inherit;
+    	font-size: 15px;
+    	border-radius: 8px;
+    	margin-bottom: 10px;
+	}
+	.email-button{
+		height: 5rem;
+    	background-color: #ffffff;
+    	text-transform: inherit;
+    	font-size: 15px;
+    	color:#000;
+    	border-radius: 8px;
+    	margin-bottom: 10px;
+	}
+	.button-inner{
+		justify-content: inherit;
+	}
+	.social-login-icon{
+		margin-right: 10px;
+    	margin-left: -8px;
+	}
+}

@@ -1,14 +1,110 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+<ion-header no-border>
+   <ion-backdrop *ngIf="isRequestStarted" disable-activated="" role="presentation" tappable="" style="opacity: 0; background: #fff;">
+  </ion-backdrop>
+   <ion-toolbar>
+      <button ion-button menuToggle class="menu-button">
+         <ion-icon name="menu" ></ion-icon>
+      </button>
+      <ion-title>
+         <img src="assets/imgs/logo_long.png" class="long-logo"/>
+      </ion-title>
+      <ion-buttons end tappable>
+         <button ion-button icon-only tappable (click)="goto_userprofile()">
+            <ion-icon name="contact" style="font-size:2.3em;"></ion-icon>
+         </button>
+      </ion-buttons>
+   </ion-toolbar>
+   <ion-segment color="dark" [(ngModel)]="tab" mode="md">
+   <ion-segment-button  value="Me" (click)="changeTab(tab)">
+      Me
+   </ion-segment-button>
+   <ion-segment-button  value="Friends" (click)="changeTab(tab)">
+      Friends
+   </ion-segment-button>
+   </ion-segment>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="birdies-me">
+
+   <div *ngIf="tab == 'Me'">
+      <h5 class="birdies">DO MORE BIRDIES</h5>
+      <ion-scroll scrollX="true" scrollY="true" style="height: 295px;">
+         <ion-row *ngFor="let game of gameList$ | async" class="bordies-list-row" (click)="toggleBirdieDetail(game)">
+         <ion-col col-9 class="birdie-col1 padding-top13">
+            <div class="birdie-name">{{game.golfname}}</div>
+            <img src="assets/imgs/Calendar.png" class="calender-icon"/><span class="birdie-date">{{game.date}}</span>
+            <div *ngIf="game.isCollapse" class="birdie-description">
+               <table style="width:100%" *ngIf="game.birdies > 0">
+                  <tr>
+                     <th>Hole</th>
+                     <th>Shot</th>
+                     <th>Distance</th>
+                  </tr>
+                  <tr *ngFor="let birdies of getKeys(game.birdies_hole)">
+                     <td>{{game.birdies_hole[birdies].hole}}</td>
+                     <td>{{game.birdies_hole[birdies].shot}}</td>
+                     <td>{{game.birdies_hole[birdies].distance}}</td>
+                 </tr>
+               </table>
+            </div>
+         </ion-col>
+         <ion-col class="birdie-col2">
+            <div style="display: inline-flex;">
+               <img *ngIf="game.birdies > 0" src="assets/imgs/logo_small.png" class="birdie-icon"/>
+               <h1 class="birdie-count">{{game.score}}</h1>
+            </div>
+            <div *ngIf="game.isCollapse" style="display: inline-flex;margin-top: 10px;">
+               <img src="assets/imgs/Edit_icon_grey.png" class="birdie-othericon" (click)="goto_editGame(game)" tappable/>
+               <img src="assets/imgs/Delete_Icon red.png" class="birdie-othericon" (click)="deleteGame(game)" tappable/>
+            </div>
+         </ion-col>
+         </ion-row>
+      </ion-scroll>
+   </div>
+
+
+  <div *ngIf="tab == 'Friends'">
+      <ion-list *ngIf="(friendRequestList$ | async)?.length > 0">
+      <ion-list-header>Friends Request</ion-list-header>
+      <ion-item *ngFor="let ff of (friendRequestList$ | async)">
+
+        <ion-avatar item-start class="avatar">
+           <img src="assets/imgs/profile.png" class="friend-image">
+           <!-- <img *ngIf="item.Photo != ''" src={{item.Photo}} class="friend-image"> -->
+        </ion-avatar>
+
+         <h2 class="friend-name">{{ff.friend_id}}</h2>
+         <p class="request-sent">Sent on {{ff.requestDate | date: 'yyyy-MM-dd'}}</p>
+        <button ion-button class="request-button accept" (click)="acceptFriendRequest(ff)">Accept</button>
+        <button ion-button class="request-button reject" (click)="refuseFriendRequest(ff)">Decline</button>
+      </ion-item>
+    </ion-list>
+
+      <ion-list *ngIf="(friendList$ | async)?.length > 0">
+        <ion-list-header>Friends Games</ion-list-header>
+         <ion-item *ngFor="let item of (friendList$ | async)" >
+           <ion-avatar item-start class="avatar">
+              <img src="assets/imgs/profile.png" class="friend-image">
+              <!-- <img *ngIf="item.Photo != ''" src={{item.Photo}} class="friend-image"> -->
+           </ion-avatar>
+           <h2 class="friend-name" (click)="goto_friendProfile(item)">{{item.friend_username}}</h2>
+           <ion-icon name="trash" item-end style="font-size: 25px;" (click)="deleteFriend(item)"></ion-icon>
+         </ion-item>
+      </ion-list>
+      <div *ngIf="(friendList$ | async)?.length == 0" class="errorbox">
+         <p>No friends yet ?</p>
+      </div>
+  </div>
+
+
+   <!-- Red button with 2 inner buttons -->
+   <ion-fab bottom right #fab>
+      <button ion-fab [ngClass]="{'fab-red': fabRed,'fab-black': !fabRed}" (click)="toggleFab()"><span style="font-size: 3.5rem;">+</span></button>
+      <ion-fab-list side="top">
+         <img src="assets/imgs/Add_game_green.png" class="fadelistimg" (click)="button_AddGame(fab)"/>
+         <img src="assets/imgs/Add_Friend_red.png" class="fadelistimg margin-bottom0" (click)="button_AddFriend(fab)"/>
+      </ion-fab-list>
+   </ion-fab>
+
+
 </ion-content>
